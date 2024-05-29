@@ -25,6 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- mengatur are pandangan (view port)-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daily Habit Tracker</title>
 
@@ -111,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="title">
                 <h1>Daily Habit Tracker</h1>
                 <p>
-                Introducing the Daily Habit Tracker app – your personal tool for cultivating positive routines and breaking free from unwanted behaviors. Seamlessly designed to fit into your daily life, this app empowers you to set and achieve your goals through intuitive tracking, insightful analytics, and personalized motivation.
+                Habit Tracker aplikasi Pelacak Kebiasaan Harian – alat pribadi Anda untuk mengembangkan rutinitas positif dan melepaskan diri dari perilaku yang tidak diinginkan. Dirancang secara mulus agar sesuai dengan kehidupan sehari-hari Anda, aplikasi ini memberdayakan Anda untuk menetapkan dan mencapai tujuan Anda melalui pelacakan intuitif, analisis mendalam, dan motivasi yang dipersonalisasi.
                 </p>
             </div>
         </div>
@@ -145,12 +146,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
-    
-    <!-- Script JS -->
-    <script src="./assets/script.js"></script>
 </body>
 </html>

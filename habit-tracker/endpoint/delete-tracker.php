@@ -1,6 +1,7 @@
 <?php
 include ('../conn/conn.php');
 
+//Memeriksa Apakah Parameter tracker Ada di URL:
 if (isset($_GET['tracker'])) {
     $tracker = $_GET['tracker'];
 

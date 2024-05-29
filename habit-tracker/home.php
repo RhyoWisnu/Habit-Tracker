@@ -11,9 +11,7 @@
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- Data Table --> 
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
-
+    <!-- MODUL 8 GUI-->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
 
@@ -89,7 +87,8 @@
 
 </head>
 <body>
-    
+
+    <!-- MODUL 5 OOP Class dan Constructor-->
     <div class="main">
 
         <div class="tracker-container">
@@ -100,7 +99,7 @@
             </div>
             <hr style="background-color: rgb(200, 200, 200)">
 
-            <!-- Add Modal -->
+            <!-- Struktur dasar Add Modal -->
             <div class="modal fade" id="addTrackerModal" tabindex="-1" aria-labelledby="addTracker" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content" style="background-color: rgb(60, 60, 60)">
@@ -116,12 +115,6 @@
                                     <label for="date" class="col-sm-2 col-form-label">Date:</label>
                                     <div class="col-sm-10">
                                         <input type="date" class="form-control" id="date" name="date">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="day" class="col-sm-2 col-form-label">Day:</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="day" name="day">
                                     </div>
                                 </div>
                                 <hr style="background-color: rgb(255, 255, 255);">
@@ -199,7 +192,7 @@
                 </div>
             </div>
 
-            <!-- Update Modal -->
+            <!-- Struktur Dasar Modal Update Modal -->
             <div class="modal fade" id="updateTrackerModal" tabindex="-1" aria-labelledby="updateTracker" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content" style="background-color: rgb(60, 60, 60)">
@@ -217,12 +210,6 @@
                                     <label for="updateDate" class="col-sm-2 col-form-label">Date:</label>
                                     <div class="col-sm-10">
                                         <input type="date" class="form-control" id="updateDate" name="date">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="updateDay" class="col-sm-2 col-form-label">Day:</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="updateDay" name="day">
                                     </div>
                                 </div>
                                 <hr style="background-color: rgb(255, 255, 255);">
@@ -299,13 +286,13 @@
                     </div>
                 </div>
             </div>
-
+            
+            <!--Header tulisan pada tabel-->
             <div class="table-container">
                 <table class="table habit-table">
                     <thead class="thead-dark">
                         <tr>    
                             <th scope="col">Date</th>
-                            <th scope="col">Day</th>
                             <th scope="col">Olahraga</th>
                             <th scope="col">Ibadah</th>
                             <th scope="col">Baca Buku</th>
@@ -326,11 +313,12 @@
                         $stmt->execute();
 
                         $result = $stmt->fetchAll();
-
+                        
+                        // foreach Modul Perulangan
+                        // Memproses dan Menampilkan Data
                         foreach ($result as $row) {
                             $trackerID = $row['tbl_tracker_id'];
                             $date = $row['date'];
-                            $day = $row['day'];
                             $exercise = $row['exercise'];
                             $pray = $row['pray'];
                             $readBook = $row['read_book'];
@@ -339,17 +327,17 @@
                             $gula = $row['gula'];
                             $meat = $row['meat'];
 
-                            // Calculate progress here
+                            // Array pada MODUl 1 (menghitung progress)
                             $totalHabits  = 7;
                             $completedHabits = count(array_filter([$exercise, $pray, $readBook, $vitamins, $laundry, $gula, $meat], function($habit) { return $habit == 'Yes'; }));
 
-                            // Avoid division by zero
+                            // Hindari pembagian dengan nol
                             $progress = $totalHabits > 0 ? ($completedHabits / $totalHabits) * 100 : 0;
                             ?>
 
                             <tr>
+                                <!--Baris Tabel-->
                                 <th scope="row" id="date-<?= $trackerID ?>"><?= $date ?></th>
-                                <td id="day-<?= $trackerID ?>"><?= $day ?></td>
                                 <td id="exercise-<?= $trackerID ?>"><?= $exercise ?></td>
                                 <td id="pray-<?= $trackerID ?>"><?= $pray ?></td>
                                 <td id="readBook-<?= $trackerID ?>"><?= $readBook ?></td>
@@ -384,20 +372,19 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
     
-    <!-- Data Table -->
-    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
+    
 
     <script>
         $(document).ready( function () {
             $('.habit-table').DataTable();
         });
-
+        
+        // MODUL 4 Function (Fungsi updateTracker)
         function updateTracker(id) {
             $("#updateTrackerModal").modal("show");
 
             let updateTrackerID = id;
             let updateDate = $("#date-" + id).text();
-            let updateDay = $("#day-" + id).text();
             let updateExercise = $("#exercise-" + id).text();
             let updatePray = $("#pray-" + id).text();
             let updateReadBook = $("#readBook-" + id).text();
@@ -406,9 +393,9 @@
             let updategula = $("#gula-" + id).text();
             let updateMeat = $("#meat-" + id).text();
 
+            // MODUL 2 Pengkondisian
             $("#updateTrackerID").val(updateTrackerID);
             $("#updateDate").val(updateDate);
-            $("#updateDay").val(updateDay);
             $("#updateExercise option").each(function() {
                 let exercise = $(this).text();
                 if (exercise === updateExercise) {
@@ -459,7 +446,8 @@
                 }
             });
         }
-
+        
+        // MODUL 4 Function (Fungsi deleteTracker)
         function deleteTracker(id) {
             if (confirm("Do you want to delete this record?")) {
                 window.location = "./endpoint/delete-tracker.php?tracker=" + id;

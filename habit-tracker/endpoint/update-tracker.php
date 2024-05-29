@@ -1,12 +1,15 @@
-<?php 
+<?php
+//Meng-include Koneksi Database
 include ('../conn/conn.php');
 
+//Memeriksa Metode Request:
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {    
-
-    if (isset($_POST['date'], $_POST['day'])) {
+    
+    //Memeriksa Apakah Tanggal Telah Diisi
+    //Mengambil Data dari Form:
+    if (isset($_POST['date'])) {
         $trackerID = $_POST['tbl_tracker_id'];
         $date = $_POST['date'];
-        $day = $_POST['day'];
         $exercise = $_POST['exercise'];
         $pray = $_POST['pray'];
         $readBook = $_POST['read_book'];
@@ -18,11 +21,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             $conn->beginTransaction();
 
-            $stmt = $conn->prepare("UPDATE tbl_tracker SET date = :date, day = :day, exercise = :exercise, pray = :pray, read_book = :read_book, vitamins = :vitamins, laundry = :laundry, gula = :gula, meat = :meat WHERE tbl_tracker_id = :tbl_tracker_id ");
-
+            $stmt = $conn->prepare("UPDATE tbl_tracker SET date = :date, exercise = :exercise, pray = :pray, read_book = :read_book, vitamins = :vitamins, laundry = :laundry, gula = :gula, meat = :meat WHERE tbl_tracker_id = :tbl_tracker_id ");
+            
+            //Memasukkan Data Baru jika Tanggal Belum Ada:
             $stmt->bindParam(":tbl_tracker_id", $trackerID, PDO::PARAM_STR);
             $stmt->bindParam(":date", $date, PDO::PARAM_STR);
-            $stmt->bindParam(":day", $day, PDO::PARAM_STR);
             $stmt->bindParam(":exercise", $exercise, PDO::PARAM_STR);
             $stmt->bindParam(":pray", $pray, PDO::PARAM_STR);
             $stmt->bindParam(":read_book", $readBook, PDO::PARAM_STR);

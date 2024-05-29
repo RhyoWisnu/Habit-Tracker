@@ -17,20 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
---
 -- Database: `habit_tracker_db`
---
 
--- --------------------------------------------------------
 
---
 -- Table structure for table `tbl_tracker`
---
-
 CREATE TABLE `tbl_tracker` (
   `tbl_tracker_id` int(11) NOT NULL,
   `date` date NOT NULL,
-  `day` varchar(255) NOT NULL,
   `exercise` varchar(255) NOT NULL,
   `pray` varchar(255) NOT NULL,
   `read_book` varchar(255) NOT NULL,
@@ -44,6 +37,8 @@ CREATE TABLE `tbl_tracker` (
 -- Dumping data for table `tbl_tracker`
 --
 
+INSERT INTO `tbl_tracker` (`tbl_tracker_id`, `date`,, `exercise`, `pray`, `read_book`, `vitamins`, `laundry`, `gula`, `meat`) VALUES
+(1, '2024-01-22', 'Monday', 'No', 'Yes', 'Yes', 'Yes', 'Yes', 'Yes', 'Yes');
 
 --
 -- Indexes for dumped tables
